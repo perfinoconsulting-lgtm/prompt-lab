@@ -6,7 +6,6 @@ import Textarea from "@/app/components/ui/Textarea";
 import Button from "@/app/components/ui/Button";
 import Tabs from "@/app/components/ui/Tabs";
 import Select from "@/app/components/ui/Select";
-import Card from "@/app/components/ui/Card";
 
 export default function Settings() {
   const [formData, setFormData] = useState({
@@ -23,31 +22,20 @@ export default function Settings() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const sectionClass = "bg-canvas border border-hairline rounded-[12px] p-6";
+
   const tabsItems = [
     {
       id: "profile",
       label: "Profile",
       content: (
-        <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-            <h3 className="text-lg font-bold text-white mb-4">Profile Information</h3>
-            <div className="space-y-4">
-              <Input
-                label="Full Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <Input label="Email" type="email" disabled value={formData.email} />
-              <Textarea
-                label="Bio"
-                name="bio"
-                value={formData.bio}
-                onChange={handleChange}
-                rows={4}
-              />
-              <Button className="w-full">Save Changes</Button>
-            </div>
+        <div className={sectionClass}>
+          <h3 className="text-base font-semibold text-ink mb-5">Profile Information</h3>
+          <div className="space-y-4">
+            <Input label="Full Name" name="name" value={formData.name} onChange={handleChange} />
+            <Input label="Email" type="email" disabled value={formData.email} />
+            <Textarea label="Bio" name="bio" value={formData.bio} onChange={handleChange} rows={4} />
+            <Button className="w-full">Save Changes</Button>
           </div>
         </div>
       ),
@@ -56,36 +44,34 @@ export default function Settings() {
       id: "preferences",
       label: "Preferences",
       content: (
-        <div className="space-y-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
-            <h3 className="text-lg font-bold text-white mb-4">Preferences</h3>
-            <div className="space-y-4">
-              <Select
-                label="Theme"
-                name="theme"
-                options={[
-                  { value: "light", label: "Light" },
-                  { value: "dark", label: "Dark" },
-                  { value: "auto", label: "Auto" },
-                ]}
-                value={formData.theme}
-                onChange={handleChange}
-              />
-              <Select
-                label="Timezone"
-                name="timezone"
-                options={[
-                  { value: "UTC", label: "UTC" },
-                  { value: "EST", label: "Eastern" },
-                  { value: "CST", label: "Central" },
-                  { value: "MST", label: "Mountain" },
-                  { value: "PST", label: "Pacific" },
-                ]}
-                value={formData.timezone}
-                onChange={handleChange}
-              />
-              <Button className="w-full">Save Preferences</Button>
-            </div>
+        <div className={sectionClass}>
+          <h3 className="text-base font-semibold text-ink mb-5">Preferences</h3>
+          <div className="space-y-4">
+            <Select
+              label="Theme"
+              name="theme"
+              options={[
+                { value: "light", label: "Light" },
+                { value: "dark", label: "Dark" },
+                { value: "auto", label: "Auto" },
+              ]}
+              value={formData.theme}
+              onChange={handleChange}
+            />
+            <Select
+              label="Timezone"
+              name="timezone"
+              options={[
+                { value: "UTC", label: "UTC" },
+                { value: "EST", label: "Eastern" },
+                { value: "CST", label: "Central" },
+                { value: "MST", label: "Mountain" },
+                { value: "PST", label: "Pacific" },
+              ]}
+              value={formData.timezone}
+              onChange={handleChange}
+            />
+            <Button className="w-full">Save Preferences</Button>
           </div>
         </div>
       ),
@@ -95,36 +81,27 @@ export default function Settings() {
       label: "Billing",
       content: (
         <div className="space-y-4">
-          <Card>
-            <h3 className="text-lg font-bold text-white mb-4">Subscription</h3>
-            <div className="mb-6">
-              <p className="text-slate-300 mb-2">Pro Plan - $9.99/month</p>
-              <p className="text-sm text-slate-400 mb-4">
-                Renews on June 15, 2026
-              </p>
+          <div className={sectionClass}>
+            <h3 className="text-base font-semibold text-ink mb-4">Subscription</h3>
+            <p className="text-sm text-charcoal mb-1">Pro Plan — $9.99/month</p>
+            <p className="text-xs text-steel mb-5">Renews on June 15, 2026</p>
+            <Button variant="danger" className="w-full">Cancel Subscription</Button>
+          </div>
+          <div className={sectionClass}>
+            <h3 className="text-base font-semibold text-ink mb-4">Billing History</h3>
+            <div className="divide-y divide-hairline text-sm">
+              {[
+                { date: "May 15, 2026", amount: "$9.99" },
+                { date: "April 15, 2026", amount: "$9.99" },
+                { date: "March 15, 2026", amount: "$9.99" },
+              ].map((row) => (
+                <div key={row.date} className="flex justify-between py-3">
+                  <span className="text-charcoal">{row.date}</span>
+                  <span className="text-charcoal font-medium">{row.amount}</span>
+                </div>
+              ))}
             </div>
-            <Button variant="danger" className="w-full">
-              Cancel Subscription
-            </Button>
-          </Card>
-
-          <Card>
-            <h3 className="text-lg font-bold text-white mb-4">Billing History</h3>
-            <div className="space-y-3 text-sm text-slate-300">
-              <div className="flex justify-between pb-3 border-b border-slate-700">
-                <span>May 15, 2026</span>
-                <span>$9.99</span>
-              </div>
-              <div className="flex justify-between pb-3 border-b border-slate-700">
-                <span>April 15, 2026</span>
-                <span>$9.99</span>
-              </div>
-              <div className="flex justify-between">
-                <span>March 15, 2026</span>
-                <span>$9.99</span>
-              </div>
-            </div>
-          </Card>
+          </div>
         </div>
       ),
     },
@@ -133,20 +110,17 @@ export default function Settings() {
       label: "API Keys",
       content: (
         <div className="space-y-4">
-          <Card>
-            <h3 className="text-lg font-bold text-white mb-4">API Keys</h3>
-            <div className="bg-slate-700 border border-slate-600 rounded-lg p-4 mb-4">
-              <p className="text-xs text-slate-400 mb-2">Key</p>
-              <p className="text-slate-200 font-mono text-sm break-all">
-                pk_live_••••••••••••••••
-              </p>
+          <div className={sectionClass}>
+            <h3 className="text-base font-semibold text-ink mb-4">API Keys</h3>
+            <div className="bg-surface border border-hairline rounded-[8px] px-4 py-3 mb-4">
+              <p className="text-xs text-steel mb-1">Key</p>
+              <p className="text-sm text-charcoal font-mono break-all">pk_live_••••••••••••••••</p>
             </div>
-            <Button size="sm">Revoke Key</Button>
-          </Card>
-
-          <Card>
+            <Button size="sm" variant="secondary">Revoke Key</Button>
+          </div>
+          <div className={sectionClass}>
             <Button className="w-full">Generate New API Key</Button>
-          </Card>
+          </div>
         </div>
       ),
     },
@@ -155,22 +129,15 @@ export default function Settings() {
       label: "Account",
       content: (
         <div className="space-y-4">
-          <Card>
-            <h3 className="text-lg font-bold text-white mb-4">Danger Zone</h3>
-            <p className="text-slate-300 text-sm mb-4">
-              Irreversible and destructive actions
-            </p>
-            <Button variant="danger" className="w-full">
-              Delete Account
-            </Button>
-          </Card>
-
-          <Card>
-            <h3 className="text-lg font-bold text-white mb-4">Session</h3>
-            <Button variant="secondary" className="w-full">
-              Logout All Sessions
-            </Button>
-          </Card>
+          <div className={sectionClass}>
+            <h3 className="text-base font-semibold text-ink mb-2">Danger Zone</h3>
+            <p className="text-sm text-steel mb-5">Irreversible and destructive actions</p>
+            <Button variant="danger" className="w-full">Delete Account</Button>
+          </div>
+          <div className={sectionClass}>
+            <h3 className="text-base font-semibold text-ink mb-4">Session</h3>
+            <Button variant="secondary" className="w-full">Logout All Sessions</Button>
+          </div>
         </div>
       ),
     },
@@ -179,11 +146,11 @@ export default function Settings() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white mb-2">Settings</h1>
-        <p className="text-slate-400">Manage your account and preferences</p>
+        <h1 className="text-3xl font-semibold text-ink tracking-tight mb-1">Settings</h1>
+        <p className="text-steel text-base">Manage your account and preferences</p>
       </div>
 
-      <div className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+      <div className="bg-canvas border border-hairline rounded-[12px] overflow-hidden">
         <Tabs items={tabsItems} defaultTab="profile" />
       </div>
     </div>

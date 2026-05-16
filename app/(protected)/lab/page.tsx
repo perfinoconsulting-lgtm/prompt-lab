@@ -53,27 +53,29 @@ export default function Lab() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-3xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white mb-2">Image to Prompt Generator</h1>
-        <p className="text-slate-400">Upload an image and let AI generate a detailed prompt for you</p>
+        <h1 className="text-3xl font-semibold text-ink tracking-tight mb-1">Image to Prompt Generator</h1>
+        <p className="text-steel text-base">Upload an image and let AI generate a detailed prompt for you</p>
       </div>
 
-      {/* Upload Section */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 mb-8">
+      {/* Upload */}
+      <div className="bg-canvas border border-hairline rounded-[12px] p-6 mb-5">
         <DropZone onFileSelect={handleFileSelect} />
-
         {file && (
-          <div className="mt-6 p-4 bg-slate-700 rounded-lg">
-            <p className="text-sm text-slate-300">
-              Selected: <span className="font-semibold text-white">{file.name}</span>
+          <div className="mt-4 px-4 py-3 bg-surface rounded-[8px] flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-brand-green shrink-0">
+              <path d="M2.5 7l2.5 2.5 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <p className="text-sm text-charcoal">
+              Selected: <span className="font-medium">{file.name}</span>
             </p>
           </div>
         )}
       </div>
 
       {/* Style Selector */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 mb-8">
+      <div className="bg-canvas border border-hairline rounded-[12px] p-6 mb-5">
         <Select
           label="Art Style Preference (Optional)"
           options={[
@@ -90,29 +92,33 @@ export default function Lab() {
         />
       </div>
 
-      {/* Analyze Button */}
+      {/* Generate Button */}
       <Button
         onClick={handleAnalyze}
         isLoading={loading}
         disabled={!file || loading}
-        className="w-full mb-8"
+        className="w-full mb-6"
         size="lg"
       >
-        {loading ? "Analyzing..." : "Generate Prompt"}
+        {loading ? "Analyzing…" : "Generate Prompt"}
       </Button>
 
-      {/* Result Section */}
+      {/* Result */}
       {result && (
-        <div className="bg-green-900 border border-green-700 rounded-lg p-8">
-          <h2 className="text-xl font-bold text-green-100 mb-4">Generated Prompt</h2>
-          <p className="text-green-50 leading-relaxed mb-6">{result}</p>
+        <div className="bg-tint-mint border border-brand-green/20 rounded-[12px] p-6">
+          <div className="flex items-center gap-2 mb-3">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-brand-green">
+              <path d="M2.5 7l2.5 2.5 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <h2 className="text-sm font-semibold text-brand-green">Generated Prompt</h2>
+          </div>
+          <p className="text-charcoal leading-relaxed mb-5 text-base">{result}</p>
           <div className="flex gap-3">
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(result);
                 setToast({ show: true, message: "Prompt copied to clipboard!", type: "success" });
               }}
-              variant="primary"
             >
               Copy Prompt
             </Button>

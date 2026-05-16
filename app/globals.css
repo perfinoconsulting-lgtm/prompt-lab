@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Enable class-based dark mode for Tailwind dark: variants */
+@custom-variant dark (&:is(.dark, .dark *));
+
+@theme {
+  /* Notion Design System — Surface & Canvas */
+  --color-canvas: #ffffff;
+  --color-surface: #f6f5f4;
+  --color-surface-soft: #fafaf9;
+  --color-hairline: #e5e3df;
+  --color-hairline-soft: #ede9e4;
+  --color-hairline-strong: #c8c4be;
+
+  /* Notion Design System — Text */
+  --color-ink-deep: #000000;
+  --color-ink: #1a1a1a;
+  --color-charcoal: #37352f;
+  --color-notion-slate: #5d5b54;
+  --color-steel: #787671;
+  --color-stone-notion: #a4a097;
+  --color-muted-notion: #bbb8b1;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #a4a097;
+
+  /* Notion Design System — Brand & Primary */
+  --color-primary: #5645d4;
+  --color-primary-pressed: #4534b3;
+  --color-primary-deep: #3a2a99;
+  --color-brand-navy: #0a1530;
+  --color-brand-navy-deep: #070f24;
+  --color-brand-navy-mid: #1a2a52;
+  --color-link-blue: #0075de;
+  --color-brand-orange: #dd5b00;
+  --color-brand-orange-deep: #793400;
+  --color-brand-pink: #ff64c8;
+  --color-brand-purple: #7b3ff2;
+  --color-brand-purple-300: #d6b6f6;
+  --color-brand-purple-800: #391c57;
+  --color-brand-teal: #2a9d99;
+  --color-brand-green: #1aae39;
+  --color-brand-yellow: #f5d75e;
+
+  /* Notion Design System — Pastel Tints */
+  --color-tint-peach: #ffe8d4;
+  --color-tint-rose: #fde0ec;
+  --color-tint-mint: #d9f3e1;
+  --color-tint-lavender: #e6e0f5;
+  --color-tint-sky: #dcecfa;
+  --color-tint-yellow: #fef7d6;
+  --color-tint-yellow-bold: #f9e79f;
+  --color-tint-cream: #f8f5e8;
+  --color-tint-gray: #f0eeec;
+
+  /* Notion Design System — Semantic */
+  --color-semantic-success: #1aae39;
+  --color-semantic-warning: #dd5b00;
+  --color-semantic-error: #e03131;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Dark mode overrides ──────────────────────────────────────────────────── */
+.dark {
+  color-scheme: dark;
+
+  /* Surface */
+  --color-canvas: #191919;
+  --color-surface: #222222;
+  --color-surface-soft: #181818;
+  --color-hairline: #2e2e2e;
+  --color-hairline-soft: #252525;
+  --color-hairline-strong: #3d3d3d;
+
+  /* Text — hierarchy inverts on dark bg */
+  --color-ink-deep: #ffffff;
+  --color-ink: #e8e8e6;
+  --color-charcoal: #c0bdb6;
+  --color-notion-slate: #9e9b95;
+  --color-steel: #8c8985;
+  --color-stone-notion: #5e5c58;
+  --color-muted-notion: #3d3b37;
+
+  /* Brand — slightly brightened for dark bg */
+  --color-primary: #7b68ee;
+  --color-primary-pressed: #5645d4;
+  --color-link-blue: #5aabff;
+  --color-brand-green: #34c95e;
+  --color-brand-orange: #f07530;
+  --color-semantic-success: #34c95e;
+  --color-semantic-error: #f55050;
+  --color-semantic-warning: #f07530;
+
+  /* Pastel tints → dark-tinted equivalents */
+  --color-tint-peach: #291a10;
+  --color-tint-rose: #28131e;
+  --color-tint-mint: #0d2018;
+  --color-tint-lavender: #191430;
+  --color-tint-sky: #0c1e2d;
+  --color-tint-yellow: #221e08;
+  --color-tint-yellow-bold: #282208;
+  --color-tint-cream: #1e1c12;
+  --color-tint-gray: #222020;
+}
+
+/* ─── Base styles ──────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-inter, Inter, -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

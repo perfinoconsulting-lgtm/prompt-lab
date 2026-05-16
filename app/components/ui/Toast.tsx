@@ -10,13 +10,7 @@ interface ToastProps {
   duration?: number;
 }
 
-export default function Toast({
-  message,
-  type = "info",
-  isVisible,
-  onClose,
-  duration = 3000,
-}: ToastProps) {
+export default function Toast({ message, type = "info", isVisible, onClose, duration = 3000 }: ToastProps) {
   useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(onClose, duration);
@@ -26,22 +20,16 @@ export default function Toast({
 
   if (!isVisible) return null;
 
-  const bgStyles = {
-    success: "bg-green-900 border-green-700",
-    error: "bg-red-900 border-red-700",
-    info: "bg-blue-900 border-blue-700",
-  };
-
-  const textStyles = {
-    success: "text-green-100",
-    error: "text-red-100",
-    info: "text-blue-100",
+  const styles = {
+    success: "bg-tint-mint border-brand-green/30 text-brand-green",
+    error: "bg-tint-rose border-semantic-error/30 text-semantic-error",
+    info: "bg-tint-sky border-link-blue/30 text-link-blue",
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-5 right-5 z-50">
       <div
-        className={`${bgStyles[type]} ${textStyles[type]} border px-6 py-4 rounded-lg shadow-lg`}
+        className={`${styles[type]} border px-5 py-3.5 rounded-[8px] shadow-[rgba(15,15,15,0.08)_0px_4px_12px_0px] text-sm font-medium max-w-sm`}
         role="alert"
       >
         {message}

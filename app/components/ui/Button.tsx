@@ -1,5 +1,5 @@
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "primary" | "secondary" | "danger" | "dark" | "ghost";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
 }
@@ -13,25 +13,26 @@ export default function Button({
   className = "",
   ...props
 }: ButtonProps) {
-  const baseStyles =
-    "font-semibold rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed";
+  const base = "font-medium rounded-[8px] transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
 
-  const variantStyles = {
-    primary: "bg-blue-600 hover:bg-blue-700 text-white",
-    secondary: "bg-slate-700 hover:bg-slate-600 text-white",
-    danger: "bg-red-600 hover:bg-red-700 text-white",
+  const variants = {
+    primary: "bg-primary hover:bg-primary-pressed text-white",
+    secondary: "bg-transparent border border-hairline-strong text-charcoal hover:bg-surface",
+    danger: "bg-semantic-error hover:bg-red-700 text-white",
+    dark: "bg-ink-deep text-white hover:bg-charcoal",
+    ghost: "bg-transparent text-charcoal hover:bg-surface",
   };
 
-  const sizeStyles = {
+  const sizes = {
     sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-2.5 text-base",
-    lg: "px-6 py-3 text-lg",
+    md: "px-[18px] py-[10px] text-sm",
+    lg: "px-6 py-3 text-base",
   };
 
   return (
     <button
       disabled={disabled || isLoading}
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {isLoading ? "Loading..." : children}

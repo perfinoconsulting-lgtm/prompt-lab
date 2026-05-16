@@ -34,28 +34,40 @@ export default function SignIn() {
   return (
     <div className="w-full">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">Welcome back</h1>
-        <p className="text-slate-400">Sign in to your Prompt Lab account</p>
+        <h1 className="text-2xl font-semibold text-ink mb-1">Welcome back</h1>
+        <p className="text-sm text-steel">Sign in to your Prompt Lab account</p>
       </div>
 
-      <div className="space-y-4 mb-6">
-        <Button className="w-full bg-slate-700 hover:bg-slate-600">
-          <span className="mr-2">🔵</span> Continue with Google
-        </Button>
-        <Button className="w-full bg-slate-700 hover:bg-slate-600">
-          <span className="mr-2">⚫</span> Continue with GitHub
-        </Button>
+      {/* Social buttons */}
+      <div className="space-y-3 mb-6">
+        <button className="w-full flex items-center justify-center gap-2.5 px-[18px] py-[10px] border border-hairline-strong rounded-[8px] text-sm font-medium text-charcoal hover:bg-surface transition-colors">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M15.68 8.18c0-.57-.05-1.11-.14-1.64H8v3.1h4.31a3.68 3.68 0 01-1.6 2.42v2h2.59c1.52-1.4 2.39-3.46 2.39-5.88z" fill="#4285F4"/>
+            <path d="M8 16c2.16 0 3.97-.72 5.3-1.94l-2.59-2c-.71.48-1.63.76-2.71.76-2.08 0-3.84-1.4-4.47-3.29H.86v2.07A8 8 0 008 16z" fill="#34A853"/>
+            <path d="M3.53 9.53A4.8 4.8 0 013.28 8c0-.53.09-1.04.25-1.53V4.4H.86A8 8 0 000 8c0 1.29.31 2.51.86 3.6l2.67-2.07z" fill="#FBBC05"/>
+            <path d="M8 3.18c1.17 0 2.23.4 3.06 1.2l2.29-2.3A8 8 0 00.86 4.4l2.67 2.07C4.16 4.58 5.92 3.18 8 3.18z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+        <button className="w-full flex items-center justify-center gap-2.5 px-[18px] py-[10px] border border-hairline-strong rounded-[8px] text-sm font-medium text-charcoal hover:bg-surface transition-colors">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          Continue with GitHub
+        </button>
       </div>
 
+      {/* Divider */}
       <div className="relative mb-6">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-slate-700" />
+          <div className="w-full border-t border-hairline" />
         </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-2 bg-slate-800 text-slate-400">or continue with email</span>
+        <div className="relative flex justify-center text-xs">
+          <span className="px-3 bg-canvas text-steel">or continue with email</span>
         </div>
       </div>
 
+      {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
           label="Email"
@@ -69,8 +81,8 @@ export default function SignIn() {
 
         <div>
           <div className="flex justify-between items-center mb-2">
-            <label className="block text-sm font-medium text-slate-300">Password</label>
-            <Link href="#" className="text-sm text-blue-400 hover:text-blue-300">
+            <label className="block text-sm font-medium text-charcoal">Password</label>
+            <Link href="#" className="text-xs text-link-blue hover:underline">
               Forgot password?
             </Link>
           </div>
@@ -81,7 +93,7 @@ export default function SignIn() {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2.5 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 h-11 bg-canvas border border-hairline-strong rounded-[8px] text-ink text-base placeholder:text-stone-notion focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
           />
         </div>
 
@@ -90,9 +102,9 @@ export default function SignIn() {
         </Button>
       </form>
 
-      <p className="text-center text-slate-400 mt-6">
-        Don't have an account?{" "}
-        <Link href="/sign-up" className="text-blue-400 hover:text-blue-300 font-medium">
+      <p className="text-center text-sm text-steel mt-6">
+        Don&apos;t have an account?{" "}
+        <Link href="/sign-up" className="text-link-blue font-medium hover:underline">
           Sign up free
         </Link>
       </p>

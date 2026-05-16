@@ -1,4 +1,5 @@
 import Accordion from "@/app/components/ui/Accordion";
+import Link from "next/link";
 
 export default function FAQ() {
   const faqs = [
@@ -6,7 +7,7 @@ export default function FAQ() {
       id: "1",
       title: "What image formats are supported?",
       content:
-        "Prompt Lab supports JPG, PNG, and WebP formats. Each image can be up to 5MB. Simply drag and drop or click to upload.",
+        "Prompt Lab supports JPG, PNG, and WebP formats. Each image can be up to 5 MB. Simply drag and drop or click to upload.",
     },
     {
       id: "2",
@@ -30,7 +31,7 @@ export default function FAQ() {
       id: "5",
       title: "Can I generate prompts for any image style?",
       content:
-        "Yes! Our AI works with any image - photographs, paintings, sketches, abstract art, etc. It generates prompts optimized for Midjourney, Stable Diffusion, and DALL-E.",
+        "Yes! Our AI works with any image — photographs, paintings, sketches, abstract art, etc. It generates prompts optimized for Midjourney, Stable Diffusion, and DALL-E.",
     },
     {
       id: "6",
@@ -53,30 +54,35 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen py-16">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-xl text-slate-300">
-            Everything you need to know about Prompt Lab.
-          </p>
-        </div>
+    <div className="bg-canvas">
+      {/* Header */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <h1 className="text-4xl sm:text-5xl font-semibold text-ink tracking-tight mb-4">
+          Frequently Asked Questions
+        </h1>
+        <p className="text-xl text-steel">
+          Everything you need to know about Prompt Lab.
+        </p>
+      </div>
 
+      {/* Accordion */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <Accordion items={faqs} />
+      </div>
 
-        <div className="mt-12 bg-slate-800 border border-slate-700 rounded-lg p-8 text-center">
-          <h2 className="text-xl font-bold text-white mb-3">Still have questions?</h2>
-          <p className="text-slate-300 mb-4">
-            We're here to help. Reach out to our support team anytime.
+      {/* Still have questions */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="bg-surface rounded-[12px] p-10 text-center">
+          <h2 className="text-xl font-semibold text-ink mb-2">Still have questions?</h2>
+          <p className="text-steel text-base mb-5">
+            We&apos;re here to help. Reach out to our support team anytime.
           </p>
-          <a
+          <Link
             href="mailto:support@promptlab.com"
-            className="inline-block px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition"
+            className="inline-block px-[18px] py-[10px] bg-primary hover:bg-primary-pressed text-white text-sm font-medium rounded-[8px] transition-colors"
           >
             Contact Support
-          </a>
+          </Link>
         </div>
       </div>
     </div>

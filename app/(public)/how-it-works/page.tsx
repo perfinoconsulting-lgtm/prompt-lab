@@ -5,73 +5,92 @@ export default function HowItWorks() {
     {
       num: 1,
       title: "Upload Your Image",
-      desc: "Select any image (JPG, PNG, WebP) up to 5MB from your device.",
+      desc: "Select any image (JPG, PNG, WebP) up to 5 MB from your device or drag and drop it directly.",
+      tint: "bg-tint-sky",
+      textColor: "text-link-blue",
     },
     {
       num: 2,
       title: "AI Analyzes",
-      desc: "Our advanced AI model (Cloudflare LLaVA) analyzes the image instantly.",
+      desc: "Our advanced AI model (Cloudflare LLaVA) analyzes the image instantly on the edge — no waiting.",
+      tint: "bg-tint-lavender",
+      textColor: "text-brand-purple",
     },
     {
       num: 3,
       title: "Get Your Prompt",
-      desc: "Receive a detailed prompt optimized for Midjourney, Stable Diffusion, or DALL-E.",
+      desc: "Receive a detailed prompt optimized for Midjourney, Stable Diffusion, or DALL‑E in under 2 seconds.",
+      tint: "bg-tint-peach",
+      textColor: "text-brand-orange",
     },
     {
       num: 4,
       title: "Create & Share",
-      desc: "Use the prompt to generate art, save your favorites, and share with others.",
+      desc: "Use the prompt to generate art, save your favorites to the gallery, and share with your community.",
+      tint: "bg-tint-mint",
+      textColor: "text-brand-green",
     },
   ];
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            How Prompt Lab Works
-          </h1>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Transform your images into professional AI art prompts in four simple steps.
-          </p>
-        </div>
+    <div className="bg-canvas">
+      {/* Header */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <h1 className="text-4xl sm:text-5xl font-semibold text-ink tracking-tight mb-4">
+          How Prompt Lab Works
+        </h1>
+        <p className="text-xl text-steel max-w-xl mx-auto leading-relaxed">
+          Transform your images into professional AI art prompts in four simple steps.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      {/* Steps */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {steps.map((step) => (
-            <div key={step.num} className="flex gap-6">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-blue-600 text-white font-bold text-lg">
-                  {step.num}
-                </div>
+            <div key={step.num} className={`${step.tint} rounded-[12px] p-8`}>
+              <div className={`w-9 h-9 rounded-[8px] bg-white/60 flex items-center justify-center mb-5`}>
+                <span className={`text-sm font-bold ${step.textColor}`}>{step.num}</span>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-slate-300">{step.desc}</p>
-              </div>
+              <h3 className="text-xl font-semibold text-ink mb-2">{step.title}</h3>
+              <p className="text-charcoal text-base leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="mt-16 bg-slate-800 border border-slate-700 rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-white mb-4">Key Features</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-300">
-            <li>✓ Lightning-fast analysis (under 2 seconds)</li>
-            <li>✓ Works with any art style or medium</li>
-            <li>✓ Professional-grade prompt quality</li>
-            <li>✓ Unlimited generations (depending on plan)</li>
-            <li>✓ Save and organize your prompts</li>
-            <li>✓ Copy with one click</li>
+      {/* Key Features */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="bg-tint-yellow-bold rounded-[12px] p-8">
+          <h2 className="text-2xl font-semibold text-ink mb-6">Key Features</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {[
+              "Lightning-fast analysis (under 2 seconds)",
+              "Works with any art style or medium",
+              "Professional-grade prompt quality",
+              "Unlimited generations (depending on plan)",
+              "Save and organize your prompts",
+              "Copy with one click",
+            ].map((feat) => (
+              <li key={feat} className="flex items-center gap-3 text-charcoal text-sm font-medium">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-brand-green shrink-0">
+                  <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                {feat}
+              </li>
+            ))}
           </ul>
         </div>
+      </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/lab"
-            className="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition"
-          >
-            Try It Now
-          </Link>
-        </div>
+      {/* CTA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 text-center">
+        <Link
+          href="/lab"
+          className="inline-block px-[18px] py-[10px] bg-primary hover:bg-primary-pressed text-white text-sm font-medium rounded-[8px] transition-colors"
+        >
+          Try It Now
+        </Link>
       </div>
     </div>
   );
